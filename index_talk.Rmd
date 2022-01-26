@@ -3,12 +3,19 @@ title: "Discharge Data Example"
 author: "Mary Dixon"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_document:
-    toc: true
-    toc_float: true
-    toc_depth: 3
-editor_options: 
-  chunk_output_type: console
+ revealjs::revealjs_presentation:
+  self_contained: false
+  center: true
+  incremental: true
+  transition: slide
+  css: style.css
+  reveal_plugins: ["chalkboard"]
+  reveal_options:
+    slideNumber: true
+    previewLinks: true
+    margin: 0.00
+    width: 1536
+    height: 864
 ---
 
 ```{r setup, include=FALSE}
@@ -33,11 +40,11 @@ The Poudre River at Lincoln Bridge is:
   
   - **Downstream of many agricultural diversions**
 
-
+***
 ## SiteDescription
 
 ![](https://waterdata.usgs.gov/nwisweb/local/state/co/text/pics/06752260big.jpg)
-
+***
 ## Data Acquisition and Plotting tests
 
 ### Data Download
@@ -55,7 +62,7 @@ q <- readNWISdv(siteNumbers = '06752260',
 ```
 
 
-
+***
 ### Static Data Plotter
 
 
@@ -68,7 +75,7 @@ ggplot(q, aes(x = Date, y = q)) +
 
 ```
 
-
+***
 ### Interactive Data Plotter
 
 
@@ -82,7 +89,7 @@ dygraph(q_xts) %>%
 ```
 
 
-
+***
 # Assignment. 
 
 
@@ -91,15 +98,19 @@ RMarkdown, since we will be using Rmds as the primary form of homework and
 assignments. With that in mind, your assignment for this homework is to:
 
 
+***
 ## 1) Fork the example repository into your personal GitHub  
 The example is forked into my repository, [marydixon](https://github.com/marydixon/1_rmarkdown_examples).
 
+***
 ## 2) Create an RStudio project from your Personal clone of the Repo.  
 It has been cloned copying the code in GitHub then opening RStudio and using File > New Project > Version Control > Git
 
+***
 ## 3) Create a table of contents that is floating, but displays three levels of headers instead of two (by editing the content at the beginning of the document)  
 The table of contents was adjusted to have three levels by defining `toc_depth` as 3 under the output section. The third level subheadings are "Data Download", "Static Data Plotter", and "Dynamic Data Plotter".
 
+***
 ## 4) Make a version of the `dygraph` with points and lines by using rstudio's dygraph [guide](https://rstudio.github.io/dygraphs/)  
 ```{r, echo=FALSE}
 q_xts <- xts(q$q, order.by = q$Date)
@@ -108,7 +119,7 @@ dygraph(q_xts, main = "Discharge DyGraph with Points") %>%
   dyAxis("y", label = "Discharge (cfs)")%>%
   dyOptions(drawPoints = TRUE, pointSize=3)
 ```
-
+***
 ```{r, echo=FALSE}
 q_xts <- xts(q$q, order.by = q$Date)
 
@@ -116,18 +127,23 @@ dygraph(q_xts, main = "Discharge DyGraph with Lines") %>%
   dyAxis("y", label = "Discharge (cfs)")%>% dySeries("V1", strokeWidth = 2, strokePattern = "dashed")
 ```
 
-
+***
 ## 5) Writing a paragraph on the Poudre river with at least three hyperlinks, **two bolded sections**, and one *italicized phrase*. The content of this paragraph is not vital, but try to at least make it true and interesting, and, of course, don't plagiarize.  
 The Cache la Poudre River begins in the Rocky Mountain National Park. [Recreational activities](https://www.fs.usda.gov/recarea/arp/recarea/?recid=81605) along the Poudre River include camping, fishing, hiking, and scenic driving. To measure the amount of water flowing in this river, [discharge data](https://www.usgs.gov/special-topics/water-science-school/science/how-streamflow-measured) is collected. Discharge is measured by the equation, **$discharge = A × v$**. [Current discharge data](https://waterdata.usgs.gov/usa/nwis/uv?06752260) is being impacted by ice at measurement sites. Discharge data is important because the Poudre River has flooded before. In 1864, a Poudre River flood destroyed Camp Collins, a military post. *When the military relocated after this event, the camp was called Fort Collins.* **This camp became the city of Fort Collins we know today**.
 
+***
 ## 6) Knit that document, and then git commit and push to your personal GitHub.  
 This document was saved, knitted, and then committed to GitHub by using the Git button in RStudio. 
 
 ## 7) Use the GitHub -> Settings -> Pages tab to create a website of your report.
 The pages tab now shows my assignment published.
 
+***
 ## 8) Bonus, make the timestamp in the header dynamic. As in it only adds today's date, not just a static date you enter. 
 The time stamp was changed to reflect today's date by adding `format(Sys.time(), '%B %d, %Y')` to the date section at the top of the markdown document.
 
 ## 9) Bonus, create an "index_talk.Rmd" version of your document using the `revealjs` package. Add link to your original report-style document. 
+
+
+
 
