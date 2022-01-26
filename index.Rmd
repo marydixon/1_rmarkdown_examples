@@ -1,11 +1,14 @@
 ---
 title: "Discharge Data Example"
-author: "Matthew Ross"
+author: "Mary Dixon"
 date: "1/24/2022"
 output:
   html_document:
     toc: true
     toc_float: true
+    toc_depth: 3
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
